@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <TextView
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/textnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your mobile number"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif"/>
+
+    <EditText
+        android:id="@+id/number"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textnumber"
+        android:hint="mobile number" />
+
+    <TextView
+        android:layout_marginTop="32dp"
+        android:layout_marginLeft="16dp"
+        android:id="@+id/otpnumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter the otp sent to your mobile"
+        android:layout_centerHorizontal="true"
+        android:textColor="#000"
+        android:layout_below="@+id/number"
+        android:textSize="18sp"
+        android:fontFamily="sans-serif"/>
+
+    <EditText
+        android:id="@+id/otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/otpnumber"
+        android:hint="otp" />
+
+    <Button
+        android:id="@+id/generate_otp"
+        android:layout_below="@+id/otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="generate_otp"
+        android:text="Generate Otp"
+        />
+
+    <Button
+        android:id="@+id/verify_otp"
+        android:layout_below="@+id/generate_otp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:onClick="verify_otp"
+        android:text="Verify and login"
+        />
+</RelativeLayout>
