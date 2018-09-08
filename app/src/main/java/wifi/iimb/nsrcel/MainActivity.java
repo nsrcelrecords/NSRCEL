@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity {
                                 tokenarray_inmate[j] = tokenget;
                                 Log.e( namesarray[j],"onResponse: name" );
                                 Log.e(tokenarray_inmate[j], "onResponse: token" );
+                                Log.e(date_inmate[j], "onResponse: date" );
 
 
                             } catch (JSONException e) {
@@ -172,9 +173,9 @@ public class MainActivity extends AppCompatActivity {
                                     String validity_of_token = validity[i];
                                     Log.e(validity_of_token, "onClick: validity");
                                     Date c = Calendar.getInstance().getTime();
-                                    SimpleDateFormat df = new SimpleDateFormat("yyyy-mm-dd");
+                                    SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                                     formattedDate = df.format(c);
-                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-mm-dd");
+                                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
                                     Log.e(login_date, "onClick:  this is the login date");
                                     Log.e(formattedDate, "onClick: No clue lol ");
 
@@ -190,15 +191,18 @@ public class MainActivity extends AppCompatActivity {
                                         e.printStackTrace();
                                     }
 
-
-                                    if (Integer.parseInt(remaining_days) <= Integer.parseInt(validity_of_token)) {
-                                        Intent intent_1 = new Intent(MainActivity.this, Ticket.class);
+                                    String password_already_present = "true";
+                                        Intent intent_1 = new Intent(MainActivity.this, otp.class);
                                         intent_1.putExtra("Username", user_namearray[i]);
                                         intent_1.putExtra("Password", tokenarray_inmate[i]);
                                         intent_1.putExtra("type", type1);
                                         intent_1.putExtra("number", myphone);
+                                        intent_1.putExtra("password_exist" , password_already_present );
+                                        intent_1.putExtra("remaining_days" , remaining_days );
+                                        intent_1.putExtra("name" , myname );
+                                        intent_1.putExtra("email" , expired_email_inmate );
                                         startActivity(intent_1);
-                                    } else {
+                                  /*  } else {
                                         Toast.makeText(getApplicationContext(), "Your token has expired, you will get a new one.", Toast.LENGTH_LONG).show();
                                         request = new StringRequest(Request.Method.POST, Url_info.URL_INMATE_EXPIRED, new Response.Listener<String>() {
                                             @Override
@@ -246,18 +250,20 @@ public class MainActivity extends AppCompatActivity {
                                         startActivity(intent);
 
 
-                                    }
+                                    } */
                                 }
                                 else if(tokenarray_inmate[i].length() == 0) {
                                     type1 = "i";
                                     myphone = "+91" + myphone;
                                     inmateindex = i + 2;
+                                    String password_already_present = "";
                                     flag = 1;
                                     Intent intent = new Intent(MainActivity.this, otp.class);
                                     intent.putExtra("Username", myname);
                                     intent.putExtra("type", type1);
                                     intent.putExtra("number", myphone);
                                     intent.putExtra("inmateindex", String.valueOf(inmateindex));
+                                    intent.putExtra("password_exist" , password_already_present );
                                     startActivity(intent);
                                 }
 
@@ -289,8 +295,10 @@ public class MainActivity extends AppCompatActivity {
     }
     public long printDifference(Date startDate, Date endDate) {
         //milliseconds
+        Log.e(String.valueOf(endDate), "printDifference: endate" );
+        Log.e(String.valueOf(startDate), "printDifference: startdate" );
         long different = endDate.getTime() - startDate.getTime();
-
+        Log.e(String.valueOf(different), "printDifference: diff" );
         System.out.println("startDate : " + startDate);
         System.out.println("endDate : "+ endDate);
         System.out.println("different : " + different);

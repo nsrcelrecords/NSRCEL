@@ -149,16 +149,22 @@ public class login extends AppCompatActivity {
                                         } catch (ParseException e) {
                                             e.printStackTrace();
                                         }
-                                        if(Integer.parseInt(remaining_days) <= Integer.parseInt(validity_today)) {
-                                            Log.e(validity_today, "onResponse: validity");
-                                            Intent intent_here = new Intent(login.this, Ticket.class);
+                                        String password_already_present = "true";
+
+                                            Intent intent_here = new Intent(login.this, otp.class);
                                             intent_here.putExtra("Username", user_name_array[i]);
                                             intent_here.putExtra("Password", password);
                                             intent_here.putExtra("type", type1);
                                             intent_here.putExtra("number", Expired_phonenumber);
+                                            intent_here.putExtra("password_exist", password_already_present);
+                                            intent_here.putExtra("remaining_days", remaining_days);
+                                            intent_here.putExtra("name", myname);
+                                            intent_here.putExtra("email", expired_email_inmate);
+                                            intent_here.putExtra("delete", index_delete);
+                                            intent_here.putExtra("reference",myreference );
                                             startActivity(intent_here);
-                                        }
-                                        else {
+
+                                        /* {
                                             Toast.makeText(getApplicationContext(),"Your token has expired, you will get a new one.",Toast.LENGTH_LONG).show();
                                             request = new StringRequest(Request.Method.POST, Url_info.URL_GUEST_EXPIRED , new Response.Listener<String>() {
                                                 @Override
@@ -251,7 +257,7 @@ public class login extends AppCompatActivity {
                                             intent.putExtra("email", emailID);
                                             intent.putExtra("reference", myreference);
                                             startActivity(intent);
-                                        }
+                                        } */
                                     }
                                 }
 
@@ -295,6 +301,7 @@ public class login extends AppCompatActivity {
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
                 String name_count = preferences.getString("count_var", "");
                 type1 = "g";
+                String password_already_present = "";
                 Intent intent = new Intent(login.this , otp.class);
                 if(email.length() == 0||name.length() == 0 || reference.length() ==0 )
                 {
@@ -306,6 +313,9 @@ public class login extends AppCompatActivity {
                     intent.putExtra("type", type1);
                     intent.putExtra("email", emailID);
                     intent.putExtra("reference", myreference);
+                    intent.putExtra("password_exist", password_already_present);
+                    intent.putExtra("remaining_days", remaining_days);
+                    intent.putExtra("name", myname);
                     startActivity(intent);
                 }
             }
