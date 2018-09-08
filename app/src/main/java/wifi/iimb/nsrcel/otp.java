@@ -59,7 +59,7 @@ public class otp extends AppCompatActivity {
     String phonenumber_real = "";
     int count=0;
     String[] tokenarray , userName , validity , date;
-    String inmateindex , password_exist , login_date,  remaining_days , password_from_database;
+    String inmateindex , password_exist , login_date,  remaining_days , password_from_database , login_date_from_database;
     int checker=0;
     String formattedDate;
     @Override
@@ -280,10 +280,12 @@ public class otp extends AppCompatActivity {
         else if( type.equals("i") && (password_exist.length() != 0)) {
             password_from_database = getIntent().getStringExtra("Password");
             remaining_days = getIntent().getStringExtra("remaining_days");
+            login_date_from_database = getIntent().getStringExtra("login_date");
         }
         else if( type.equals("g") && (password_exist.length() != 0)) {
             password_from_database = getIntent().getStringExtra("Password");
             remaining_days = getIntent().getStringExtra("remaining_days");
+            login_date_from_database = getIntent().getStringExtra("login_date");
         }
 
 
@@ -503,9 +505,10 @@ public class otp extends AppCompatActivity {
                                     }) {
                                         @Override
                                         protected Map<String, String> getParams() throws AuthFailureError {
+                                            Log.e( password_from_database + login_date_from_database + username + name + phonenumber_real + email, "getParams: parameters----------------------------------------------inmate" );
                                             HashMap<String, String> hashMap = new HashMap<String, String>();
                                             hashMap.put("token", password_from_database);
-                                            hashMap.put("date", login_date);
+                                            hashMap.put("date", login_date_from_database);
                                             hashMap.put("UserName", username);
                                             hashMap.put("accountname", name);
                                             hashMap.put("number", phonenumber_real);
@@ -560,8 +563,9 @@ public class otp extends AppCompatActivity {
                                         @Override
                                         protected Map<String, String> getParams() throws AuthFailureError {
                                             HashMap<String, String> hashMap = new HashMap<String, String>();
-                                            hashMap.put("token",password);
-                                            hashMap.put("date", login_date);
+                                            Log.e( password + login_date + username + name + number + email , "getParams: parameters ---------------------------------------------------");
+                                            hashMap.put("token",password_from_database);
+                                            hashMap.put("date", login_date_from_database);
                                             hashMap.put("UserName",username);
                                             hashMap.put("accountname", name);
                                             hashMap.put("number", number );

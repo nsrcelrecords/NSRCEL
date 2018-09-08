@@ -201,6 +201,7 @@ public class MainActivity extends AppCompatActivity {
                                         intent_1.putExtra("remaining_days" , remaining_days );
                                         intent_1.putExtra("name" , myname );
                                         intent_1.putExtra("email" , expired_email_inmate );
+                                        intent_1.putExtra("login_date" , login_date );
                                         startActivity(intent_1);
                                   /*  } else {
                                         Toast.makeText(getApplicationContext(), "Your token has expired, you will get a new one.", Toast.LENGTH_LONG).show();
