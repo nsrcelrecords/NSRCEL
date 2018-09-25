@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'key0'
             keyPassword 'nsrcelrecords17'
-            storeFile file('G:/NSRCEL/mykeystore.jks')
+            storeFile file('D:/NSRCEL/mykeystore.jks')
             storePassword 'nsrcelrecords'
         }
     }
